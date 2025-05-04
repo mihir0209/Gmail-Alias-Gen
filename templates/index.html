@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Gmail Alias Generator</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+<div id="random-bg-btn" class="random-bg-btn" onclick="setRandomBackground()" title="Randomize background"></div>
+<div class="container">
+    <div class="card">
+        <h1>🎭 Gmail Alias Generator</h1>
+        <form method="POST">
+            <div class="form-group">
+                <label for="email">Your Gmail:</label>
+                <input type="email" id="email" name="email" required placeholder="example@gmail.com" value="{{ email }}">
+            </div>
+            <div class="form-group">
+                <label for="count">Number of Aliases:</label>
+                <input type="number" id="count" name="count" min="1" max="5000" value="{{ count }}" required>
+            </div>
+            <button type="submit">Generate Aliases</button>
+        </form>
+        {% with messages = get_flashed_messages(with_categories=true) %}
+          {% if messages %}
+            <ul class="flashes">
+            {% for category, message in messages %}
+              <li class="{{ category }}">{{ message }}</li>
+            {% endfor %}
+            </ul>
+          {% endif %}
+        {% endwith %}
+        {% if aliases %}
+        <div class="result-box card">
+            <div class="toolbar">
+                <button type="button" onclick="copyAliases()">Copy All</button>
+                <a href="{{ url_for('export', filetype='txt') }}" class="btn">Export TXT</a>
+                <a href="{{ url_for('export', filetype='xlsx') }}" class="btn">Export Excel</a>
+                <form method="POST" action="{{ url_for('clear') }}" style="display:inline;">
+                    <button type="submit" class="btn btn-danger" onclick="return confirm('Delete ALL aliases?');">🗑️ Clear All</button>
+                </form>
+            </div>
+            <div id="aliases" class="alias-list">
+                {% for alias in aliases %}
+                <div class="alias-item">{{ alias }}</div>
+                {% endfor %}
+            </div>
+        </div>
+        {% endif %}
+    </div>
+    <div class="usage-instructions card">
+        <h3>Pro Tips</h3>
+        <ol>
+            <li>You can use aliases in the same website to imitate that you are signing with another Gmail account.</li>
+            <li>Paste this list into Google Keep/Todoist for easy management (first select tick, that will open up a new UI where a tickbox would be there. Just paste the content in it, it will automatically create the tickboxes for each line...)</li>
+            <li>Track which alias you used where, you can also write the website names ahead of the Gmail in Google Keep.</li>
+            <li>Keep same password for each alias signup to remember it easily.</li>
+        </ol>
+    </div>
+</div>
+<script>
+    const picsumUrl = "https://picsum.photos/1600/900";
+    function setRandomBackground() {
+        const useUnsplash = Math.random() > 0.5;
+        const url = picsumUrl + "?random=" + Math.floor(Math.random() * 10000);
+        document.body.style.backgroundImage = `url('${url}')`;
+    }
+    // Set a random background on page load
+    window.onload = function() {
+        setRandomBackground();
+    };
+    function copyAliases() {
+        const aliases = document.querySelectorAll('.alias-item');
+        const text = Array.from(aliases).map(a => a.textContent).join('\n');
+        navigator.clipboard.writeText(text).then(() => {
+            alert('Copied ' + aliases.length + ' aliases to clipboard!');
+        });
+    }
+
+    window.addEventListener("beforeunload", function (e) {
+        // Use navigator.sendBeacon for reliability
+        navigator.sendBeacon('/clear_on_exit');
+    });
+</script>
+</body>
+</html>

@@ -1,0 +1,140 @@
+body {
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    background-size: cover;
+    background-position: center;
+    transition: background-image 0.6s;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.random-bg-btn {
+    position: fixed;
+    top: 22px;
+    left: 22px;
+    width: 38px;
+    height: 38px;
+    background: rgba(255,255,255,0.7) url('https://img.icons8.com/ios-filled/50/000000/shuffle.png') no-repeat center center;
+    background-size: 60% 60%;
+    border-radius: 50%;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    cursor: pointer;
+    z-index: 100;
+    border: 1px solid #e0e0e0;
+}
+
+.container {
+    max-width: 800px;
+    margin: 48px auto 0 auto;
+    background: rgba(255,255,255,0.25);
+    border-radius: 16px;
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border: 1px solid rgba(255,255,255,0.18);
+    padding: 30px;
+}
+
+.card {
+    background: rgba(255,255,255,0.85);
+    border-radius: 12px;
+    padding: 24px;
+    margin-bottom: 24px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+}
+
+h1, label, .usage-instructions, .form-group, .alias-item {
+    color: #222;
+}
+
+.usage-instructions.card {
+    background: rgba(0,0,0,0.75);
+    color: #fff;
+}
+
+.usage-instructions.card h3, .usage-instructions.card li {
+    color: #fff;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+input[type="email"], 
+input[type="number"] {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+button, .btn {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 12px 25px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s;
+    margin-right: 5px;
+    text-decoration: none;
+}
+
+button:hover, .btn:hover {
+    background-color: #45a049;
+}
+
+.btn-danger {
+    background-color: #e74c3c;
+}
+.btn-danger:hover {
+    background-color: #c0392b;
+}
+
+.result-box {
+    margin-top: 30px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 20px;
+}
+
+.toolbar {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 15px;
+    align-items: center;
+}
+
+.alias-list {
+    max-height: 400px;
+    overflow-y: auto;
+}
+
+.alias-item {
+    padding: 8px 12px;
+    margin: 5px 0;
+    background-color: #f8f9fa;
+    border-radius: 4px;
+    font-family: monospace;
+}
+
+.flashes {
+    list-style: none;
+    padding: 0;
+    margin: 10px 0;
+}
+.flashes li {
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 5px;
+}
+.flashes li.error {
+    background: #e74c3c;
+    color: #fff;
+}
+.flashes li.info {
+    background: #3498db;
+    color: #fff;
+}
