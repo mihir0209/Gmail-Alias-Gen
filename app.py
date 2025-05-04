@@ -7,6 +7,7 @@ import os
 from flask import jsonify
 
 app = Flask(__name__)
+app.config['SECRET_KEY'] = 'meowmeow'
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///aliases.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
