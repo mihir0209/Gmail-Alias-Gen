@@ -1,6 +1,7 @@
 # 🎭 Gmail Alias Generator
 
-Welcome to your new secret weapon for unlimited signups, privacy, and inbox control!  
+Welcome to your new secret weapon for unlimited signups, privacy, and inbox control!
+
 **Gmail Alias Generator** lets you instantly create thousands of unique Gmail addresses that all land in your real inbox-no hacks, no data collection, no strings attached.
 
 ---
@@ -14,18 +15,19 @@ Welcome to your new secret weapon for unlimited signups, privacy, and inbox cont
 - **One-Click Unsubscribe:** Set up Gmail filters to auto-archive, label, or delete emails sent to a specific alias.
 - **Password Simplicity:** Use the same password for all aliases (or not-your call). Pair with a password manager for true mastery.
 - **Zero Data Collection:** Your aliases are wiped from the server the moment you leave. No logs, no tracking, no analytics. Your privacy is the default setting.
+- **Easy Cleanup:** No data is ever stored after you leave-this tool is 100% ephemeral and privacy-friendly.
 
 ---
 
 ## 🖼️ Features
 
-- Generate up to 5,000 Gmail aliases at once-instantly
-- Export your list as TXT or Excel (XLSX) with one click
-- Copy all aliases to your clipboard instantly
-- Shuffle the background with Unsplash/Picsum for a fresh look every time
-- Frosted glass, modern UI for readability and style
-- No persistent storage-database is cleared when you leave
-- 100% open source, privacy-first, and fun to use
+- Generate up to **5,000 Gmail aliases** at once-instantly
+- Export your list as **TXT** or **Excel (XLSX)** with one click
+- **Copy all aliases** to your clipboard instantly
+- **Shuffle the background** with Unsplash/Picsum for a fresh look every time
+- **Frosted glass, modern UI** for readability and style
+- **No persistent storage**-database is cleared when you leave
+- **100% open source**, privacy-first, and fun to use
 
 ---
 
@@ -33,8 +35,8 @@ Welcome to your new secret weapon for unlimited signups, privacy, and inbox cont
 
 1. **Clone this repo:**
     ```
-    git clone https://github.com/mihir0209/gmail-alias-generator.git
-    cd gmail-alias-generator
+    git clone https://github.com/mihir0209/Gmail-Alias-Gen.git
+    cd Gmail-Alias-Gen
     ```
 
 2. **Install dependencies:**
@@ -48,7 +50,7 @@ Welcome to your new secret weapon for unlimited signups, privacy, and inbox cont
     ```
     python app.py
     ```
-    Open [http://localhost:5000](http://localhost:5000) in your browser.
+    Then open [http://localhost:5000](http://localhost:5000) in your browser.
 
 ---
 
@@ -57,14 +59,18 @@ Welcome to your new secret weapon for unlimited signups, privacy, and inbox cont
 1. **Push your project to GitHub.**
 2. **Create a new Web Service** on [Render](https://render.com/).
 3. **Set Build Command:**  
-   `pip install -r requirements.txt`
+pip install -r requirements.txt
+
+text
 4. **Set Start Command:**  
-   `gunicorn app:app`
+gunicorn app:app
+
+text
 5. **Environment:**  
-   - Python 3.10+  
-   - No persistent database needed
+- Python 3.10+  
+- No persistent database needed
 6. **Click Deploy!**  
-   Your app will be live at `https://your-app.onrender.com`.
+Your app will be live at `https://your-app.onrender.com`.
 
 ---
 
@@ -89,12 +95,9 @@ Welcome to your new secret weapon for unlimited signups, privacy, and inbox cont
 
 ## 💡 Advanced Usage
 
-- **Gmail Filters:**  
-  Instantly organize or auto-delete emails to specific aliases.
-- **Forwarding:**  
-  Use aliases as forwarding addresses for other accounts.
-- **Security:**  
-  Use unique passwords for each alias for maximum protection (or keep it simple-your choice).
+- **Gmail Filters:** Instantly organize or auto-delete emails to specific aliases.
+- **Forwarding:** Use aliases as forwarding addresses for other accounts.
+- **Security:** Use unique passwords for each alias for maximum protection (or keep it simple-your choice).
 
 ---
 
@@ -115,5 +118,9 @@ Help make this tool even more useful for everyone.
 
 ---
 
-**Enjoy your new superpower for free trials, privacy, and inbox control.  
-No rights reserved.**
+**Enjoy your new superpower for free trials, privacy, and inbox control.**
+**No rights reserved.**
+
+---
+
+> [mihir0209/Gmail-Alias-Gen on GitHub](https://github.com/mihir0209/Gmail-Alias-Gen)
