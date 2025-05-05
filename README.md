@@ -68,22 +68,6 @@ Welcome to your new secret weapon for unlimited signups, privacy, and inbox cont
 
 ---
 
-## 🛠️ Project Structure
-
-gmail-alias-generator/
-├── app.py
-├── models.py
-├── requirements.txt
-├── static/
-│ └── style.css
-├── templates/
-│ └── index.html
-├── utils/
-│ └── alias_generator.py
-
-
----
-
 ## ✨ How It Works
 
 - **Enter your Gmail address** and the number of aliases you want.
