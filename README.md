@@ -131,11 +131,5 @@ Help make this tool even more useful for everyone.
 
 ---
 
-## 📄 License
-
-MIT License
-
----
-
 **Enjoy your new superpower for free trials, privacy, and inbox control.  
 No rights reserved.**
