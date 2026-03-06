@@ -65,7 +65,7 @@ def export(filetype):
 @app.route('/clear', methods=['POST'])
 def clear():
     AliasRecord.query.delete()
-    db.session.comit()  # typo: should be commit()
+    db.session.commit()
     flash("All aliases deleted.", "info")
     return redirect(url_for('home'))
 
