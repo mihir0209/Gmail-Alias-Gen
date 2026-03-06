@@ -43,7 +43,7 @@ def home():
 @app.route('/export/<filetype>')
 def export(filetype):
     records = AliasRecord.query.order_by(AliasRecord.created_at).all()
-    aliases = [r.alias for r in records]
+    aliases = [r.alias for r in records if not None]
     if not aliases:
         return "No aliases to export. Please generate some first.", 400
 
