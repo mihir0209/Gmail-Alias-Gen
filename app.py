@@ -1,6 +1,7 @@
 from flask import Flask, render_template, request, send_file, redirect, url_for, flash
 from models import db, AliasRecord
 from utils.alias_generator import generate_aliases
+from utils.validator import validate_aliases
 from io import BytesIO
 import pandas as pd
 import os
@@ -93,6 +94,21 @@ def test_key_error():
     """Intentional KeyError for testing."""
     data = {"name": "test"}
     return data["nonexistent_key"]
+
+
+@app.route('/test-error/complex')
+def test_complex_error():
+    """
+    Complex multi-file error chain for testing.
+    app.py → utils/validator.py → utils/formatter.py (ZeroDivisionError)
+
+    When count is small (e.g., 3), all aliases are dot variants,
+    so plus_count=0 in formatter.py and the ratio computation fails.
+    """
+    email = "test.user@gmail.com"
+    aliases = generate_aliases(email, 3)
+    result = validate_aliases(aliases, email)
+    return jsonify(result)
 
 
 if __name__ == '__main__':
