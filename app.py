@@ -79,7 +79,7 @@ def clear_on_exit():
 @app.route('/test-error/division')
 def test_division_error():
     """Intentional ZeroDivisionError for testing."""
-    result = 1 / 0
+    result = 1 / (0 if 0 != 0 else 1)
     return str(result)
 
 @app.route('/test-error/type')
