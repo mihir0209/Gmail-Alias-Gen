@@ -76,5 +76,24 @@ def clear_on_exit():
     db.session.commit()
     return jsonify({'status': 'ok'})
 
+@app.route('/test-error/division')
+def test_division_error():
+    """Intentional ZeroDivisionError for testing."""
+    result = 1 / 0
+    return str(result)
+
+@app.route('/test-error/type')
+def test_type_error():
+    """Intentional TypeError for testing."""
+    result = "hello" + 42
+    return str(result)
+
+@app.route('/test-error/key')
+def test_key_error():
+    """Intentional KeyError for testing."""
+    data = {"name": "test"}
+    return data["nonexistent_key"]
+
+
 if __name__ == '__main__':
     app.run(debug=True)
