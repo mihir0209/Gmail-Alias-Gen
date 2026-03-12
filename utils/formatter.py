@@ -15,7 +15,7 @@ def compute_alias_stats(aliases, base_email):
 
     # Calculate the ratio of dot variants to plus variants
     # BUG: when all aliases are dot variants, plus_count is 0 → ZeroDivisionError
-    ratio = dot_count / plus_count
+    ratio = dot_count / plus_count if plus_count > 0 else float('inf')
 
     return {
         "total": total,
