@@ -1,15 +1,26 @@
+from venv import logger
+
 from flask import Flask, render_template, request, send_file, redirect, url_for, flash
 from models import db, AliasRecord
 from utils.alias_generator import generate_aliases
-from utils.validator import validate_aliases
 from io import BytesIO
 import pandas as pd
 import os
+import logging
 from flask import jsonify
+
+# ── AutoCure Self-Healing Handler ──
+from autocure_handler import attach_autocure
+handler = attach_autocure()  # attaches to root logger to catch all errors
+
+if handler:
+    print(f"AutoCure handler attached successfully. Logs will be sent to: {handler.ws_url}")
+else:
+    print("No AutoCure handler attached. Please check your environment variables and dependencies.")
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'meowmeow'
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:////tmp/aliases.db'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///' + os.path.join(os.path.dirname(os.path.abspath(__file__)), 'aliases.db')
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 db.init_app(app)
@@ -38,6 +49,7 @@ def home():
                 db.session.add(record)
             db.session.commit()
         except Exception as e:
+            logging.error("Failed to generate aliases: %s", e, exc_info=True)
             flash(str(e), "error")
     return render_template('index.html', aliases=aliases, email=email, count=count)
 
@@ -77,6 +89,8 @@ def clear_on_exit():
     db.session.commit()
     return jsonify({'status': 'ok'})
 
+
+# ── Intentional error routes for AutoCure testing ──
 @app.route('/test-error/division')
 def test_division_error():
     """Intentional ZeroDivisionError for testing."""
@@ -96,20 +110,17 @@ def test_key_error():
     return data["nonexistent_key"]
 
 
-@app.route('/test-error/complex')
-def test_complex_error():
-    """
-    Complex multi-file error chain for testing.
-    app.py → utils/validator.py → utils/formatter.py (ZeroDivisionError)
-
-    When count is small (e.g., 3), all aliases are dot variants,
-    so plus_count=0 in formatter.py and the ratio computation fails.
-    """
-    email = "test.user@gmail.com"
-    aliases = generate_aliases(email, 3)
-    result = validate_aliases(aliases, email)
-    return jsonify(result)
+@app.errorhandler(Exception)
+def handle_exception(e):
+    """Global error handler — logs to AutoCure."""
+    logging.error(
+        "Unhandled exception on %s %s: %s",
+        request.method, request.path, e,
+        exc_info=True,
+    )
+    return jsonify({"error": str(e)}), 500
 
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    logging.basicConfig(level=logging.INFO)
+    app.run(debug=True, port=5555)
