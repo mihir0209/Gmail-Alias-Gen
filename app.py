@@ -100,7 +100,7 @@ def test_division_error():
 @app.route('/test-error/type')
 def test_type_error():
     """Intentional TypeError for testing."""
-    result = "hello" + 42
+    result = "hello" + str(42)
     return str(result)
 
 @app.route('/test-error/key')
