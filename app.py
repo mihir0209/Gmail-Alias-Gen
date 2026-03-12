@@ -109,6 +109,15 @@ def test_key_error():
     data = {"name": "test"}
     return data["nonexistent_key"]
 
+@app.route('/test-error/complex')
+def test_complex_error():
+    """Multi-file call chain: app → validator → formatter (ZeroDivisionError)."""
+    from utils.validator import validate_aliases
+    # Generate only dot-variant aliases so plus_count=0 → triggers ZeroDivisionError in formatter.py
+    aliases = ["test.email@gmail.com", "t.e.s.t@gmail.com", "te.st@gmail.com"]
+    result = validate_aliases(aliases, "test@gmail.com")
+    return jsonify(result)
+
 
 @app.errorhandler(Exception)
 def handle_exception(e):
