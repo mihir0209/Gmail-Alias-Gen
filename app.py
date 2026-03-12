@@ -100,7 +100,7 @@ def test_key_error():
 def test_complex_error():
     """
     Complex multi-file error chain for testing.
-    app.py → utils/validator.py → utils/formatter.py (ZeroDivisionError)
+    "app.py -> utils/validator.py -> utils/formatter.py (ZeroDivisionError)"
 
     When count is small (e.g., 3), all aliases are dot variants,
     so plus_count=0 in formatter.py and the ratio computation fails.
