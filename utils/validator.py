@@ -23,10 +23,12 @@ def validate_aliases(aliases, base_email):
     stats = compute_alias_stats(aliases, base_email)
     report = format_stats_report(stats)
 
+    invalid_count = len(invalid)
+
     return {
         "valid": True,
         "count": len(aliases),
-        "invalid_count": len(invalid),
+        "invalid_count": invalid_count,
         "stats": stats,
         "report": report,
     }
