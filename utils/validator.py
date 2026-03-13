@@ -14,10 +14,7 @@ def validate_aliases(aliases, base_email):
     if not aliases:
         raise ValueError("No aliases to validate")
 
-    invalid = []
-    for alias in aliases:
-        if '@' not in alias:
-            invalid.append(alias)
+    invalid = [alias for alias in aliases if '@' not in alias]
 
     if invalid:
         raise ValueError(f"Invalid aliases found: {invalid}")
